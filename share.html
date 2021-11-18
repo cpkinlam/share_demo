@@ -187,27 +187,19 @@ header {
 const shareDialog = document.querySelector('.share-dialog');
 const closeButton = document.querySelector('.close-button');
 
-const blob = await fetch('https://cpkinlam.github.io/share_demo/images/dummy.jpeg').then(r=>r.blob())
-
-const share = async (title, text, blob) => {
-  const data = {
-    files: [
-      new File([blob], 'file.jpeg', {
-        type: blob.type,
-      }),
-    ],
-    title: "test",
-    text: "test",
-  };
-  try {
-    if (!(navigator.canShare(data))) {
-      throw new Error("Can't share data.", data);
+shareButton.addEventListener('click', event => {
+  if (navigator.share) { 
+   navigator.share({
+      title: 'WebShare API Demo',
+      url: 'https://cpkinlam.github.io/share_demo/images/dummy.jpeg'
+    }).then(() => {
+      console.log('Thanks for sharing!');
+    })
+    .catch(console.error);
+    } else {
+        shareDialog.classList.add('is-open');
     }
-    await navigator.share(data);
-  } catch (err) {
-    console.error(err.name, err.message);
-  }
-};
+});
 
 closeButton.addEventListener('click', event => {
   shareDialog.classList.remove('is-open');
