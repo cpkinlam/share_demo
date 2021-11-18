@@ -187,7 +187,7 @@ const shareDialog = document.querySelector('.share-dialog');
 const closeButton = document.querySelector('.close-button');
 
 shareButton.addEventListener('click', async () => {
-  const blob = fetch('https://cpkinlam.github.io/share_demo/images/dummy.jpeg').then(r=>r.blob())
+  const blob = await fetch('https://cpkinlam.github.io/share_demo/images/dummy.jpeg').then(r=>r.blob())
     if (navigator.share) { 
       // navigator.share({
       //   title: 'WebShare API Demo',
