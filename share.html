@@ -131,7 +131,7 @@ header {
 <body>
     <div style="width: 100%;max-width: 480px;margin: 0 auto;text-align: center;" >
         <div style="margin-bottom:40px;">
-            <img src="./images/dummy.jpeg" style="display: block; width: 100%;">
+            <img src="./images/dummy2.jpeg" style="display: block; width: 100%;">
         </div>
         
 
@@ -147,12 +147,12 @@ header {
               </a>
               
               
-              <a class="button" href="https://wa.me/?text=testing+https://cpkinlam.github.io/share_demo/images/dummy.jpeg">
+              <a class="button" href="https://wa.me/?text=testing+https://cpkinlam.github.io/share_demo/images/dummy2.jpeg">
                 <span>Whatsapp</span>
               </a>
             </div>
             <div class="link">
-              <div class="pen-url">https://cpkinlam.github.io/share_demo/images/dummy.jpeg</div>
+              <div class="pen-url">https://cpkinlam.github.io/share_demo/images/dummy2.jpeg</div>
               <button class="copy-link">Copy Link</button>
             </div>
           </div>
@@ -187,11 +187,11 @@ const shareDialog = document.querySelector('.share-dialog');
 const closeButton = document.querySelector('.close-button');
 
 shareButton.addEventListener('click', async () => {
-  const blob = await fetch('https://cpkinlam.github.io/share_demo/images/dummy.jpeg').then(r=>r.blob())
+  const blob = await fetch('https://cpkinlam.github.io/share_demo/images/dummy2.jpeg').then(r=>r.blob())
     if (navigator.share) { 
       // navigator.share({
       //   title: 'WebShare API Demo',
-      //   url: 'https://cpkinlam.github.io/share_demo/images/dummy.jpeg'
+      //   url: 'https://cpkinlam.github.io/share_demo/images/dummy2.jpeg'
       // }).then(() => {
       //   console.log('Thanks for sharing!');
       // })
@@ -223,7 +223,7 @@ closeButton.addEventListener('click', event => {
             let winWidth = 600;
             var winTop = (screen.height / 2) - (winHeight / 2);
             var winLeft = (screen.width / 2) - (winWidth / 2);
-            window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURI('https://cpkinlam.github.io/share_demo/images/dummy.jpeg')+'&quote=testing', 'sharer', 'top=' + winTop + ',left=' + winLeft + 'toolbar=0,status=0,width='+winWidth+',height='+winHeight);
+            window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURI('https://cpkinlam.github.io/share_demo/images/dummy2.jpeg')+'&quote=testing', 'sharer', 'top=' + winTop + ',left=' + winLeft + 'toolbar=0,status=0,width='+winWidth+',height='+winHeight);
 
 
 
