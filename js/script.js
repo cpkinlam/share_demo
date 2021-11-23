@@ -3,7 +3,7 @@ $(document).ready(function(){
    
     var current_camera = "";
     var facingMode = "environment";
-    var mediaConfig =  { video: {facingMode} };
+    var mediaConfig =  { video: { facingMode:  facingMode} };
     if($("#cam").length){
         setCamera(mediaConfig);
     }
@@ -63,7 +63,7 @@ $(document).ready(function(){
                 }else{
                     facingMode = "environment";
                 }
-                var mediaConfig =  { video: {facingMode} };
+                mediaConfig.video =  { facingMode: facingMode} ;
                 setCamera(mediaConfig)
                 
             }).catch(function (e) {
