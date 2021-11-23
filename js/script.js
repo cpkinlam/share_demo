@@ -65,11 +65,10 @@ $(document).ready(function(){
                                     video.srcObject = stream;
                                     video.play();
                                 }, errBack);
-                                break;
                             }
                             break;
                     }
-            
+                    break;
                     console.log(device);
                 });
             }).catch(function (e) {
