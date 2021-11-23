@@ -1,9 +1,9 @@
 $(document).ready(function(){
     var video = document.querySelector("#cam");
-    var mediaConfig =  { video: {
-    } };
+   
     var current_camera = "";
-    var camera_type = "front";
+    var facingMode = "environment";
+    var mediaConfig =  { video: {facingMode} };
     if($("#cam").length){
         setCamera(mediaConfig);
     }
@@ -44,12 +44,10 @@ $(document).ready(function(){
         console.log("enumerateDevices is not supported.");
         alert("enumerateDevices is not supported.")
     }else{
-        navigator.mediaDevices.enumerateDevices().then((devices) => {
-            console.log(devices.filter(device => device.kind == "videoinput").length);
-            if(devices.filter(device => device.kind == "videoinput").length == 1){
-                $("#switch-camera").css("display", "none");
-            }
-        })
+        const supports = navigator.mediaDevices.getSupportedConstraints();
+        if (!supports['facingMode']) {
+            $("#switch-camera").css("display", "none");
+        }
         
     }
 
@@ -60,33 +58,14 @@ $(document).ready(function(){
         }else{
             navigator.mediaDevices.enumerateDevices().then((devices) => {
                 var isChanged = false;
-                if(camera_type == "front"){
-                    camera_type = "back";
+                if(facingMode == "environment"){
+                    facingMode = "user";
                 }else{
-                    camera_type = "front";
+                    facingMode = "environment";
                 }
-                devices.forEach((device) => {
-                    let option = new Option();
-                    option.value = device.deviceId;
-                    
-                    // According to the type of media device
-                    switch(device.kind){
-                        // Append device to list of Cameras
-                        case "videoinput":
-                            if(device.label.indexOf(camera_type) >= 0){
-                                if(!isChanged){
-                                    console.log("select " + device);
-                                    mediaConfig.video.deviceId = {
-                                        exact: device.deviceId
-                                    }
-                                    setCamera(mediaConfig)
-                                    isChanged = true;
-                                }
-                            }
-                            break;
-                    }
-                    console.log(device);
-                });
+                var mediaConfig =  { video: {facingMode} };
+                setCamera(mediaConfig)
+                
             }).catch(function (e) {
                 console.log(e.name + ": " + e.message);
             });
