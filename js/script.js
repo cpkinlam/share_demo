@@ -1,8 +1,6 @@
 $(document).ready(function(){
     var video = document.querySelector("#cam");
     var mediaConfig =  { video: {
-        width: $(window).width(),
-        height: $(window).height(),
     } };
     var current_camera = "";
     var camera_type = "front";
