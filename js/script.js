@@ -1,6 +1,9 @@
 $(document).ready(function(){
     var video = document.querySelector("#cam");
-    var mediaConfig =  { video: true };
+    var mediaConfig =  { video: {
+        width: $(window).width(),
+        height: $(window).height(),
+    } };
     var current_camera = "";
     if($("#cam").length){
         setCamera(mediaConfig);
@@ -56,19 +59,19 @@ $(document).ready(function(){
                         // Append device to list of Cameras
                         case "videoinput":
                             if(device.deviceId != current_camera){
-                                console.log("select " + device);
-                                mediaConfig.video = {
-                                    deviceId: device.deviceId
+                                if(!isChanged){
+                                    console.log("select " + device);
+                                    mediaConfig.video.deviceId = device.deviceId
+                                    navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+                                        // video.src = window.URL.createObjectURL(stream);
+                                        video.srcObject = stream;
+                                        video.play();
+                                    }, errBack);
+                                    isChanged = true;
                                 }
-                                navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
-                                    // video.src = window.URL.createObjectURL(stream);
-                                    video.srcObject = stream;
-                                    video.play();
-                                }, errBack);
                             }
                             break;
                     }
-                    break;
                     console.log(device);
                 });
             }).catch(function (e) {
