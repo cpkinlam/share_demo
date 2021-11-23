@@ -84,9 +84,18 @@ shareButton.addEventListener('click', async () => {
         });
   try{
     console.log(navigator.canShare({title: "test"}));
-    if (navigator.canShare({title: "test"})) { 
+    if(navigator.canShare && navigator.canShare({files: [filesArray]})){
       navigator.share({
         files: [filesArray],
+        title: "test",
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      })
+      .catch((err)=>{
+        console.log(err);
+      });
+    }else if (navigator.canShare && navigator.canShare({title: "test"})) { 
+      navigator.share({
         title: "test",
         text: "test"
       }).then(() => {
