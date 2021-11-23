@@ -92,13 +92,15 @@ shareButton.addEventListener('click', async () => {
         console.log('Thanks for sharing!');
       })
       .catch((err)=>{
-        console.log(err)
+        console.log(err);
+        shareDialog.classList.add('is-open');
       });
     } else {
         shareDialog.classList.add('is-open');
     }
   }catch(err){
-    console.log(err)
+    console.log(err);
+    shareDialog.classList.add('is-open');
   }
 }, false);
 
