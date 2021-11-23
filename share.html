@@ -78,14 +78,14 @@ const closeButton = document.querySelector('.close-button');
 
 shareButton.addEventListener('click', async () => {
   const blob = await fetch('https://cpkinlam.github.io/share_demo/images/dummy2.jpeg').then(r=>r.blob())
-  try{
-    if (navigator.share) { 
-      navigator.share({
-        files: [
-        new File([blob], 'file.jpeg', {
+  
+  let filesArray = new File([blob], 'file.jpeg', {
             type: blob.type,
-        }),
-        ],
+        });
+  try{
+    if (navigator.share && navigator.canShare({ files: filesArray })) { 
+      navigator.share({
+        files: [filesArray],
         title: "test",
         text: "test"
       }).then(() => {
