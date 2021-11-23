@@ -39,7 +39,7 @@ $(document).ready(function(){
         console.log("error")
     }
 
-    $(".switch-camera").click(function(){
+    $("#switch-camera").click(function(){
         if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
             console.log("enumerateDevices is not supported.");
             alert("enumerateDevices is not supported.")
