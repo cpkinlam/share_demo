@@ -78,7 +78,9 @@ $(document).ready(function(){
                             if(device.label.indexOf(camera_type) >= 0){
                                 if(!isChanged){
                                     console.log("select " + device);
-                                    mediaConfig.video.deviceId = device.deviceId
+                                    mediaConfig.video.deviceId = {
+                                        exact: device.deviceId
+                                    }
                                     setCamera(mediaConfig)
                                     isChanged = true;
                                 }
