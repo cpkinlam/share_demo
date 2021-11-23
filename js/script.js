@@ -45,7 +45,7 @@ $(document).ready(function(){
             alert("enumerateDevices is not supported.")
         }else{
             navigator.mediaDevices.enumerateDevices().then((devices) => {
-               
+                var isChanged = false
                 console.log(devices);
                 devices.forEach((device) => {
                     let option = new Option();
@@ -65,6 +65,7 @@ $(document).ready(function(){
                                     video.srcObject = stream;
                                     video.play();
                                 }, errBack);
+                                break;
                             }
                             break;
                     }
