@@ -13,7 +13,7 @@ $(document).ready(function(){
         if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
                 // video.src = window.URL.createObjectURL(stream);
-                videoElm.srcObject = null;
+                video.srcObject = null;
                 video.srcObject = stream;
                 video.play();
             }, errBack);
