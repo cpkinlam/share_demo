@@ -83,7 +83,7 @@ shareButton.addEventListener('click', async () => {
             type: blob.type,
         });
   try{
-    console.log(navigator.canShare({title: "test"}));
+    
     if(navigator.canShare && navigator.canShare({files: [filesArray]})){
       navigator.share({
         files: [filesArray],
@@ -108,7 +108,7 @@ shareButton.addEventListener('click', async () => {
         shareDialog.classList.add('is-open');
     }
   }catch(err){
-    console.log(err);
+    shareDialog.classList.add('is-open');
   }
 }, false);
 
