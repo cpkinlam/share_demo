@@ -62,7 +62,11 @@ $(document).ready(function(){
         }else{
             navigator.mediaDevices.enumerateDevices().then((devices) => {
                 var isChanged = false;
-                if(camera_type == "front"){camera_type = "back" }
+                if(camera_type == "front"){
+                    camera_type = "back";
+                }else{
+                    camera_type = "front";
+                }
                 devices.forEach((device) => {
                     let option = new Option();
                     option.value = device.deviceId;
