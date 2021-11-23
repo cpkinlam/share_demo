@@ -79,11 +79,7 @@ $(document).ready(function(){
                                 if(!isChanged){
                                     console.log("select " + device);
                                     mediaConfig.video.deviceId = device.deviceId
-                                    navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
-                                        // video.src = window.URL.createObjectURL(stream);
-                                        video.srcObject = stream;
-                                        video.play();
-                                    }, errBack);
+                                    setCamera(mediaConfig)
                                     isChanged = true;
                                 }
                             }
