@@ -42,14 +42,15 @@ $(document).ready(function(){
     $(".switch-camera").click(function(){
         if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
             console.log("enumerateDevices is not supported.");
+            alert("enumerateDevices is not supported.")
         }else{
             navigator.mediaDevices.enumerateDevices().then((devices) => {
                
-                
+                console.log(devices);
                 devices.forEach((device) => {
                     let option = new Option();
                     option.value = device.deviceId;
-            
+                    
                     // According to the type of media device
                     switch(device.kind){
                         // Append device to list of Cameras
