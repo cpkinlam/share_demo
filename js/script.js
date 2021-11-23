@@ -5,6 +5,7 @@ $(document).ready(function(){
         height: $(window).height(),
     } };
     var current_camera = "";
+    var camera_type = "front";
     if($("#cam").length){
         setCamera(mediaConfig);
     }
@@ -41,6 +42,18 @@ $(document).ready(function(){
     function errBack(){
         console.log("error")
     }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+        console.log("enumerateDevices is not supported.");
+        alert("enumerateDevices is not supported.")
+    }else{
+        navigator.mediaDevices.enumerateDevices().then((devices) => {
+            console.log(devices.filter(device => device.kind == "videoinput").length);
+            if(devices.filter(device => device.kind == "videoinput").length == 1){
+                $("#switch-camera").css("display", "none");
+            }
+        })
+        
+    }
 
     $("#switch-camera").click(function(){
         if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -48,8 +61,8 @@ $(document).ready(function(){
             alert("enumerateDevices is not supported.")
         }else{
             navigator.mediaDevices.enumerateDevices().then((devices) => {
-                var isChanged = false
-                console.log(devices);
+                var isChanged = false;
+                if(camera_type == "front"){camera_type = "back" }
                 devices.forEach((device) => {
                     let option = new Option();
                     option.value = device.deviceId;
@@ -58,7 +71,7 @@ $(document).ready(function(){
                     switch(device.kind){
                         // Append device to list of Cameras
                         case "videoinput":
-                            if(device.deviceId != current_camera){
+                            if(device.label.indexOf(camera_type) >= 0){
                                 if(!isChanged){
                                     console.log("select " + device);
                                     mediaConfig.video.deviceId = device.deviceId
