@@ -83,7 +83,7 @@ shareButton.addEventListener('click', async () => {
             type: blob.type,
         });
   try{
-    if (navigator.share && navigator.canShare({ files: filesArray })) { 
+    if (navigator.canShare && navigator.canShare({ files: filesArray })) { 
       navigator.share({
         files: [filesArray],
         title: "test",
