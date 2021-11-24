@@ -6,14 +6,18 @@
 
   <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <link rel="stylesheet" href="./css/style.css" />
-  <!-- <script async src="./js/script.js"></script> -->
+  <script async src="./js/script.js"></script>
 
 	<title>AWE</title>
 </head>
 
 
 <body>
+  <div class="rotation-lock">
+      <img src="./images/rotation_lock.jpeg">
+  </div>
     <div style="width: 100%;max-width: 480px;margin: 0 auto;text-align: center;" >
         <div style="margin-bottom:40px;">
             <img src="./images/dummy2.jpeg" style="display: block; width: 100%;">
@@ -23,7 +27,7 @@
 
         <div class="share-dialog">
             <header>
-              <h3 class="dialog-title">Share this pen</h3>
+              <h3 class="dialog-title">Share this photo</h3>
               <button class="close-button"><svg><use href="#close"></use></svg></button>
             </header>
             <div class="targets">
@@ -83,7 +87,7 @@ shareButton.addEventListener('click', async () => {
             type: blob.type,
         });
   try{
-    
+
     if(navigator.canShare && navigator.canShare({files: [filesArray]})){
       navigator.share({
         files: [filesArray],
