@@ -1,12 +1,22 @@
 $(document).ready(function(){
     var video = document.querySelector("#cam");
-   
+
+    /****************** index ***********/
+    $(".temp-wrap").click(function(){
+        var this_id = $(this).attr("data-id");
+        window.location='./camera.html#'+this_id;
+    })
+
+
+
+
+
     var current_camera = "";
     var facingMode = "environment";
     var mediaConfig =  {
         video: {
-            width: 1280,
-            height: 720,
+            width: $(window).width(),
+            height: $(window).height()- 40,
             facingMode:  facingMode
         }
     };
