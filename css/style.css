@@ -440,6 +440,7 @@ a.block-btn {
     display: none;
     text-align: center;
     color: #fff;
+    z-index: 20;
 }
 .rotation-lock .rotation-lock-header{
     height: 20vh;
