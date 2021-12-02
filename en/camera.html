@@ -15,6 +15,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../icomoon.css" />
+
+  <script src="../js/html2canvas.js"></script>
   <script src="../js/script.js"></script>
 
 
@@ -71,9 +73,14 @@
                 </div>
             </div>
         </div>
-        <div style="width:80px; height:90px; overflow: auto; position: fixed;top: 0;left: 0;" >
+        <div style="width:180px; height:180px; overflow: auto; position: fixed;top: 0;left: 0;" >
             <img id="test" style="width:20px; height:20px">
             <canvas id="webcam-canvas" style="width:300px; height:400px;"></canvas>
+            <div class="print-wrap">
+                <img src="" class="print-img">
+                <div class="print-item1"><img></div>
+                <!-- <div class="print-item2"><img></div> -->
+            </div>
         </div>
     </div>
 
