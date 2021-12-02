@@ -88,4 +88,54 @@ $(document).ready(function(){
             });
         }
     })
+
+
+    $(".take-photo-btn").click(function(){
+        var win_w_scale	= $( window ).width() * 1;
+		var win_h_scale	= ($( window ).height() - 40) * 1;
+        var img = new Image;
+        var canvas = document.getElementById('webcam-canvas');
+        $("#webcam-canvas").attr("width", win_w_scale).attr("height", win_h_scale);
+        $("#webcam-video").attr("width", win_w_scale).attr("height", win_h_scale);
+        var video = document.getElementById('cam');
+        var context = canvas.getContext('2d');
+
+        var video_proportion	= video.videoWidth / video.videoHeight;
+        
+        
+        s_height	= win_h_scale/2 - win_w_scale/video_proportion/2;
+        if(s_height<0){ s_height	= 0;}
+        
+        
+        context.drawImage(video, 0, s_height, win_w_scale, win_w_scale/video_proportion);
+        
+        // video.pause();
+        
+        $("#test").attr("src", canvas.toDataURL("image/jpeg"));
+
+        const base64Canvas = canvas.toDataURL("image/jpeg").split(';base64,')[1];
+
+        // var formData = new FormData();
+        // formData.append('user_avatar', base64Canvas);
+        formData = {
+            "user_avatar":base64Canvas
+        }
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            contentType: "application/json",
+            data: JSON.stringify(formData),
+            url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/awe-winter-s3",
+            beforeSend: function() {
+                $(".loading-wrap").addClass("active")
+            },
+            success: function(data) {
+                $(".loading-wrap").removeClass("active");
+                console.log(data);
+    
+                window.location = "./share.html#"+data['Location']
+            }
+        });
+    })
+
 });
