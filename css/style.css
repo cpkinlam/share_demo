@@ -369,8 +369,34 @@ ul li {
     padding-bottom: 10em;
 }
 
+
+.color-purple{
+    color: #55006b;
+}
+
 a.block-btn {
     width: 100%;
+}
+
+a.purple-btn{
+    background: rgb(171,11,97);
+    background: linear-gradient(90deg, rgba(171,11,97,1) 0%, rgba(147,15,128,1) 100%);
+    display: block;
+    color: #fff;
+    border-radius: 200px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 6px 0 rgb(0 0 0 / 30%);
+}
+
+a.white-btn{
+    background: #fff;
+    display: block;
+    color: #940e7f;
+    border-radius: 200px;
+    padding: 5px 10px;
+    border:2px solid #940e7f;
+    box-shadow: 0 2px 6px 0 rgb(0 0 0 / 30%);
+    
 }
 
 
@@ -561,17 +587,43 @@ a.block-btn {
 
 /************** footer ************/
 .footer-wrap{
-    height: 20vh;
+    min-height: 20vh;
+    width: 100%;
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
+    
+    z-index: 10;
+    align-items: flex-end;
+}
+.footer-wrap .footer-bg{
     background-position: top center;
     background-image: url(../images/bottom_bg.png);
     background-size: 100% 100%;
-    z-index: 10;
-    
+    padding-bottom: 40%;
+    display: block;
+    width: 100%;
 }
+
+.footer-wrap .footer-content{
+    text-align: center;
+    padding: 0px 20px 20px;
+    background: #fff;
+}
+
+.footer-wrap .footer-content a{
+    padding: 5px 10px;
+    max-width: 200px;
+    margin: 0 auto 10px;
+
+}
+
+.footer-wrap .footer-content a:last-child{
+    margin-bottom: 0;
+}
+
+
 
 
 /*************** main *************/
@@ -707,6 +759,121 @@ a.block-btn {
 #cam{
     display: block;
 }
+
+
+.share-title{
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+/************* share page ************/
+.share-page .main{
+    align-items: flex-end;
+}
+
+.share-page .main-content{
+    padding-bottom: 0px;
+    height: 100%;
+}
+
+.main-image-wrap{
+    width: 60%;
+    margin: 0 auto;
+}
+.main-image-wrap img{
+    width:100%;
+    display: block;
+}
+
+
+.popup-wrap{
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    z-index: 9997;
+    opacity: 0;
+    -webkit-transition:500ms linear;
+    -moz-transition:500ms linear;
+    transition:500ms linear;
+    visibility: hidden;
+}
+
+.popup-wrap.active{
+    opacity: 1;
+    visibility: visible;
+}
+.popup-wrap .popup-bg{
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1
+}
+
+.popup-wrap .popup-content{
+    position: absolute;
+    width: 90%;
+    max-width: 276px;
+    padding:20px;
+    top:50%;
+    left:50%;
+    transform: translateY(-50%) translateX(-50%);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 8px 10px 4px rgba(0,0,0,0.4);
+    z-index: 3;
+    overflow: auto;
+}
+
+.popup-close{ position: absolute; right:15px; top:10px; color: #ccc; cursor: pointer;}
+
+.share-icon-wrap{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.share-icon-wrap a{
+    display: block;
+    text-align: center;
+    font-size: 10px;
+}
+
+.share-icon-wrap a span{
+    height: 40px;
+    width: 40px;
+    display: block;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 40px;
+    border-radius: 50%;
+    box-shadow: 2px 0 10px 0 rgb(0 0 0 / 20%);
+}
+
+.share-icon-wrap a.facebook-btn span{
+    background: #0776e8;
+    color:#fff
+}
+
+.share-icon-wrap a.whatsapp-btn span{
+    background: #1CB823;
+    color:#fff
+}
+
+.share-icon-wrap a.copylink-btn span{
+    background: #fff;
+    color:#ab0b61
+}
+
+
 
 button,
 .button,
