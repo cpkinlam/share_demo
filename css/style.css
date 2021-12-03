@@ -684,7 +684,7 @@ a.white-btn{
 
 .camera-wrap{
     position: relative;
-    height: calc(100% - 40px);
+    height: calc(100% - 11vh);
     width: 100%;
 }
 
@@ -874,4 +874,23 @@ a.white-btn{
 }
 
 
+.print-wrap{
+    position: relative;
+}
 
+.print-wrap .print-img{
+    width: 100%;
+    display: block;
+}
+
+.print-wrap .print-item1{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+.print-wrap .print-item1 img{
+    width: 100%;
+    display: block;
+}
