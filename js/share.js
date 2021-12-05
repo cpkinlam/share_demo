@@ -8,7 +8,7 @@ $(document).ready(function(){
         hash_url = location.href.split('#')[1];
         $(".main-image").attr("src", s3_url+hash_url);
         $(".save-btn").attr("href", home_url+hash_url);
-        $(".whatsapp-btn").attr("href", "https://wa.me/?text="+share_title+"+"+home_url+hash_url)
+        $(".whatsapp-btn").attr("href", "https://wa.me/?text="+share_title+"+%0D\r\n"+home_url+hash_url)
     } else {
         alert("Wrong Url")
     }
@@ -38,7 +38,7 @@ $(document).ready(function(){
             }else if (navigator.canShare && navigator.canShare({title: "AsiaWorld-Expo 亞洲國際博覽館"})) { 
             navigator.share({
                 title: share_title,
-                text: home_url+hash_url
+                text: share_title + "\r\n"+home_url+hash_url
             }).then(() => {
                 console.log('Thanks for sharing!');
             })
