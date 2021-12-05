@@ -25,6 +25,7 @@ $(document).ready(function(){
     var current_camera = "";
     var facingMode = "user";
     var mediaConfig =  {
+        facingMode: facingMode,
         audio: false,
         video: {
             width: {
