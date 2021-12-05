@@ -24,8 +24,14 @@ $(document).ready(function(){
     var facingMode = "environment";
     var mediaConfig =  {
         video: {
-            width: $(".camera-wrap").width(),
-            height: $(".camera-wrap").height()
+            width: {
+                min: $(".camera-wrap").width(),
+                ideal: $(".camera-wrap").width(),
+                max: $(".camera-wrap").width() },
+            height: { 
+                min: $(".camera-wrap").height(),
+                ideal: $(".camera-wrap").height(),
+                max: $(".camera-wrap").height() },
         }
     };
     if($("#cam").length){
