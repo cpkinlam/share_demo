@@ -424,6 +424,21 @@ a.white-btn{
     padding-left: 20px;
 }
 
+.loading-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.6);
+    -webkit-transition: all 500ms linear;
+    -moz-transition: all 500ms linear;
+    -o-transition: all 500ms linear;
+    transition: all 500ms linear;
+    visibility: hidden;
+    opacity: 0;
+}
 
 .loading-wrap.active {
     opacity: 1;

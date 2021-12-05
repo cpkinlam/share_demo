@@ -154,7 +154,6 @@ $(document).ready(function(){
                 $(".loading-wrap").addClass("active")
             },
             success: function(data) {
-                $(".loading-wrap").removeClass("active");
                 console.log(data);
                 
                 // $(".print-img").attr("src", data['Location'])
