@@ -3,8 +3,8 @@ var img_dir = "https://cpkinlam.github.io/share_demo/images/"
 $(document).ready(function(){
     var video = document.querySelector("#cam");
 
-    // $("#cam").attr("width", $(".camera-wrap").width() + "px");
-    // $("#cam").attr("height", $(".camera-wrap").height() + "px");
+    $(".print-wrap").css("width", $(".camera-wrap").width() + "px");
+    $(".print-wrap").css("height", $(".camera-wrap").height() + "px");
 
     if(window.location.hash) {
         hash_id = location.href.split('#')[1];
@@ -119,20 +119,14 @@ $(document).ready(function(){
 		var win_h_scale	= $(".camera-wrap").height();
         var img = new Image;
         var canvas = document.getElementById('webcam-canvas');
-        $("#webcam-canvas").attr("width", win_w_scale).attr("height", win_h_scale);
-        $("#webcam-video").attr("width", win_w_scale).attr("height", win_h_scale);
+        $("#webcam-canvas").attr("width", $("#cam").width()).attr("height", $("#cam").height());
         var video = document.getElementById('cam');
         var context = canvas.getContext('2d');
 
         
-        var video_proportion	= video.videoWidth / video.videoHeight;
         
         
-        s_height	= win_h_scale/2 - win_w_scale/video_proportion/2;
-        if(s_height<0){ s_height	= 0;}
-        
-        
-        context.drawImage(video, 0, 0, win_w_scale, win_w_scale/video_proportion);
+        context.drawImage(video, 0, 0, $("#cam").width(), $("#cam").height());
 
         
         
@@ -157,7 +151,8 @@ $(document).ready(function(){
                 $(".loading-wrap").removeClass("active");
                 console.log(data);
                 
-                $(".print-img").attr("src", data['Location'])
+                // $(".print-img").attr("src", data['Location'])
+                $(".print-wrap").css("background-image", "url("+data['Location']+")");
                 $(".print-item1 img").attr("src", img_dir+"animation"+hash_id+"_bottom.gif")
                 // $(".print-item2 img").attr("src", home_url+data['Key'])
 
@@ -178,7 +173,7 @@ $(document).ready(function(){
                             },
                             success: function(data) {
                                 console.log(data['Key']);
-                                window.location = "./share.html#"+data['Key']
+                                // window.location = "./share.html#"+data['Key']
                             }
                         })
                     })
