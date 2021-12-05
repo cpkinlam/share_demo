@@ -27,20 +27,21 @@ $(document).ready(function(){
     var mediaConfig =  {
         facingMode: facingMode,
         audio: false,
-        video: {
-            width: {
-                min: $(".camera-wrap").width(),
-                ideal: $(".camera-wrap").width(),
-                max: $(".camera-wrap").width(),
-                exact: $(".camera-wrap").width()
-            },
-            height: { 
-                min: $(".camera-wrap").height(),
-                ideal: $(".camera-wrap").height(),
-                max: $(".camera-wrap").height(),
-                exact: $(".camera-wrap").height()
-            }
-        }
+        video:true
+        // video: {
+        //     width: {
+        //         min: $(".camera-wrap").width(),
+        //         ideal: $(".camera-wrap").width(),
+        //         max: $(".camera-wrap").width(),
+        //         exact: $(".camera-wrap").width()
+        //     },
+        //     height: { 
+        //         min: $(".camera-wrap").height(),
+        //         ideal: $(".camera-wrap").height(),
+        //         max: $(".camera-wrap").height(),
+        //         exact: $(".camera-wrap").height()
+        //     }
+        // }
     };
     if($("#cam").length){
         setCamera(mediaConfig);
@@ -160,7 +161,7 @@ $(document).ready(function(){
                 $(".print-item1 img").attr("src", img_dir+"animation"+hash_id+"_bottom.gif")
                 // $(".print-item2 img").attr("src", home_url+data['Key'])
 
-                setTimeout(function(){
+ 
                     html2canvas($(".print-wrap")[0],{allowTaint: true,useCORS: true, scrollY: -window.scrollY}).then(function(canvas) {
                         const base64Canvas2 = canvas.toDataURL("image/jpeg").split(';base64,')[1];
                         formData = {
@@ -181,7 +182,7 @@ $(document).ready(function(){
                             }
                         })
                     })
-                }, Math.floor(Math.random() * 500));
+                
                 // window.location = "./share.html#"+home_url+data['Key']
 
 
