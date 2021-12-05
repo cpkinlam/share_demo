@@ -39,6 +39,12 @@ $(document).ready(function(){
                 ideal: $(".camera-wrap").height(),
                 max: $(".camera-wrap").height(),
                 exact: $(".camera-wrap").height()
+            },
+            mandatory: {
+                minWidth: $(".camera-wrap").width(),
+                maxWidth: $(".camera-wrap").width(),
+                minHeight: $(".camera-wrap").height(),
+                maxHeight: $(".camera-wrap").height()
             }
         }
     };
