@@ -52,24 +52,30 @@ $(document).ready(function(){
         if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
                 // video.src = window.URL.createObjectURL(stream);
+                window.stream = stream;
                 video.srcObject = null;
                 video.srcObject = stream;
                 video.play();
+
+                
             }, errBack());
         }
 
         else if(navigator.getUserMedia) { // Standard
             navigator.getUserMedia(mediaConfig, function(stream) {
+                window.stream = stream;
                 video.src = stream;
                 video.play();
             }, errBack());
         } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
             navigator.webkitGetUserMedia(mediaConfig, function(stream){
+                window.stream = stream;
                 video.src = window.webkitURL.createObjectURL(stream);
                 video.play();
             }, errBack());
         } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
             navigator.mozGetUserMedia(mediaConfig, function(stream){
+                window.stream = stream;
                 video.src = window.URL.createObjectURL(stream);
                 video.play();
             }, errBack());
