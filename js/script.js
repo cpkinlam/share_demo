@@ -87,7 +87,7 @@ $(document).ready(function(){
                             },
                             success: function(data) {
                                 console.log(data['Key']);
-                                // window.location = "./share.html#"+data['Key']
+                                window.location = "./share.html#"+data['Key']
                             }
                         })
                     })
