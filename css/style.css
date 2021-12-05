@@ -703,6 +703,7 @@ a.white-btn{
     position: relative;
     height: calc(100% - 11vh);
     width: 100%;
+    overflow: hidden;
 }
 
 .camera-page .main::before,

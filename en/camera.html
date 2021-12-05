@@ -48,7 +48,26 @@
         <div class="web-content">
             <div class="main">
                 <div class="camera-wrap">
-                    <video id='cam' autoplay muted></video>
+                    <!-- <video id='cam' autoplay muted playsinline></video>
+                    <div class="full-page-animation animation1">
+                        
+                    </div>
+                    <div class="animation-item1">
+                        
+                    </div>
+                    <div class="animation-item2">
+
+                    </div> -->
+                    
+ 
+                    <select style="display: none;" id="devices" name="Video devices" multiple title="devices"></select>
+
+                    <div  style="display: none;" class="col-sm-6 scanarea well well-sm" id="quickArea">
+                        <button class="btn btn-primary btn-block" id="quickButton">Quick Scan</button>
+                        <p id="quickLabel"></p>
+                    </div>
+                    
+                    <video id="cam" autoplay muted playsinline></video>
                     <div class="full-page-animation animation1">
                         
                     </div>
@@ -58,6 +77,10 @@
                     <div class="animation-item2">
 
                     </div>
+
+                    <script src="https://webrtchacks.github.io/adapter/adapter-latest.js"></script>
+                    <script src="../js/test.js"></script>
+
                 </div>
     
                 <div id="video"></div>
@@ -72,7 +95,7 @@
                     <a href="javascript:vovid(0)" class="switch-camera-btn">
                         <spna class="icon-icon-share"></spna>
                     </a>
-
+                    <select id="devices" name="Video devices" multiple title="devices"></select>
                     <!-- <a href="javascript:vovid(0)" class="test">test</a> -->
                 </div>
             </div>
@@ -88,6 +111,6 @@
             </div>
         </div>
     </div>
-
+    
 </body>
 </html>
