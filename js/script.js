@@ -6,7 +6,7 @@ $(document).ready(function(){
     if(window.location.hash) {
         hash_id = location.href.split('#')[1];
 
-        $(".animation-item1").prepend('<img src="'+img_dir+'animation'+hash_id+'_bottom.png'+'" />')
+        $(".animation-item1").prepend('<img src="'+img_dir+'animation'+hash_id+'_bottom.gif'+'" />')
     }
 
     /****************** index ***********/
@@ -24,8 +24,7 @@ $(document).ready(function(){
     var mediaConfig =  {
         video: {
             width: $(window).width(),
-            height: $(window).height()- 40,
-            facingMode:  facingMode
+            height: $(window).height()- 40
         }
     };
     if($("#cam").length){
@@ -65,6 +64,8 @@ $(document).ready(function(){
     function errBack(){
         console.log("errBack")
     }
+
+    alert(navigator.mediaDevices);
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
         console.log("enumerateDevices is not supported.");
         alert("enumerateDevices is not supported.")
@@ -139,29 +140,31 @@ $(document).ready(function(){
                 console.log(data);
                 
                 $(".print-img").attr("src", data['Location'])
-                $(".print-item1 img").attr("src", img_dir+"animation"+hash_id+"_bottom.png")
+                $(".print-item1 img").attr("src", img_dir+"animation"+hash_id+"_bottom.gif")
                 // $(".print-item2 img").attr("src", home_url+data['Key'])
 
-                html2canvas($(".print-wrap")[0],{allowTaint: true,useCORS: true, scrollY: -window.scrollY}).then(function(canvas) {
-                    const base64Canvas2 = canvas.toDataURL("image/jpeg").split(';base64,')[1];
-                    formData = {
-                        "user_avatar":base64Canvas2
-                    }
-                    $.ajax({
-                        type: "POST",
-                        dataType:"json",
-                        contentType: "application/json",
-                        data: JSON.stringify(formData),
-                        url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/awe-winter-s3",
-                        beforeSend: function() {
-                            $(".loading-wrap").addClass("active")
-                        },
-                        success: function(data) {
-                            console.log(home_url+data['Key']);
-                            // window.location = "./share.html#"+home_url+data['Key']
+                setTimeout(function(){
+                    html2canvas($(".print-wrap")[0],{allowTaint: true,useCORS: true, scrollY: -window.scrollY}).then(function(canvas) {
+                        const base64Canvas2 = canvas.toDataURL("image/jpeg").split(';base64,')[1];
+                        formData = {
+                            "user_avatar":base64Canvas2
                         }
+                        $.ajax({
+                            type: "POST",
+                            dataType:"json",
+                            contentType: "application/json",
+                            data: JSON.stringify(formData),
+                            url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/awe-winter-s3",
+                            beforeSend: function() {
+                                $(".loading-wrap").addClass("active")
+                            },
+                            success: function(data) {
+                                console.log(home_url+data['Key']);
+                                // window.location = "./share.html#"+home_url+data['Key']
+                            }
+                        })
                     })
-                })
+                }, Math.floor(Math.random() * 500));
                 // window.location = "./share.html#"+home_url+data['Key']
 
 
@@ -170,7 +173,7 @@ $(document).ready(function(){
         });
     })
     $(".test").click(function(){
-        html2canvas($(".print-wrap")[0],{allowTaint: true,useCORS: true, scrollY: -window.scrollY}).then(function(canvas) {
+        html2canvas($(".camera-wrap")[0],{allowTaint: true,useCORS: true, scrollY: -window.scrollY}).then(function(canvas) {
             const base64Canvas2 = canvas.toDataURL("image/jpeg").split(';base64,')[1];
             formData = {
                 "user_avatar":base64Canvas2

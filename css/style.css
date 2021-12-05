@@ -699,10 +699,21 @@ a.white-btn{
     left: 0;
     right: 0;
     bottom: 0;
-    background-position: center center;
+    background-position: top center;
+    z-index: 10;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .full-page-animation.animation1{
+    background-image: url(../images/animation1_screen.gif);
+}
+
+.full-page-animation.animation2{
+    background-image: url(../images/giphy.gif);
+}
+
+.full-page-animation.animation3{
     background-image: url(../images/giphy.gif);
 }
 
