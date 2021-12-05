@@ -20,10 +20,10 @@ $(document).ready(function(){
 
 
 
-
+    console.log(navigator.mediaDevices.enumerateDevices());
 
     var current_camera = "";
-    var facingMode = "environment";
+    var facingMode = "user";
     var mediaConfig =  {
         audio: false,
         video: {
