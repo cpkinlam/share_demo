@@ -4,6 +4,9 @@ var img_dir = "https://cpkinlam.github.io/share_demo/images/"
 $(document).ready(function(){
     var video = document.querySelector("#cam");
 
+    $("#cam").attr("width", $(".camera-wrap").width() + "px");
+    $("#cam").attr("height", $(".camera-wrap").height() + "px");
+
     if(window.location.hash) {
         hash_id = location.href.split('#')[1];
 
@@ -23,6 +26,7 @@ $(document).ready(function(){
     var current_camera = "";
     var facingMode = "environment";
     var mediaConfig =  {
+        audio: false,
         video: {
             width: {
                 min: $(".camera-wrap").width(),
@@ -33,8 +37,9 @@ $(document).ready(function(){
             height: { 
                 min: $(".camera-wrap").height(),
                 ideal: $(".camera-wrap").height(),
-                max: $(".camera-wrap").height() },
+                max: $(".camera-wrap").height(),
                 exact: $(".camera-wrap").height()
+            }
         }
     };
     if($("#cam").length){
