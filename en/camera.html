@@ -98,7 +98,7 @@
                     <!-- <a href="javascript:void(0)" class="test">test</a> -->
                 </div>
             </div>
-            <div class="col-sm-6 scanarea well well-sm" id="fullArea">
+            <div class="col-sm-6 scanarea well well-sm" id="fullArea" style="display: none;">
                 <button class="btn btn-primary btn-block" id="fullButton">Full Scan</button>
                 <p>vertical resolution range: <br>
                 <span>  max:
@@ -107,7 +107,7 @@
                     <input type="text" id="loRes" value="1" size="4" maxlength="4" min="1" max="2160" pattern="[0-9]{1,4}" title="lowRes"/>
                 </span></p>
             </div>
-            <table class="table-condensed table-bordered table-striped"	id="results" hidden >
+            <table class="table-condensed table-bordered table-striped"	id="results" hidden style="display: none;">
                 <tr><th>Browser</th><th>Device</th><th>Res Name</th><th>Ratio</th><th>Ask</th><th>Actual</th><th>Status</th><th class="hidden">deviceIndex</th><th class="hidden">resIndex</th></tr>
             </table>
         </div>
