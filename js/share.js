@@ -38,7 +38,7 @@ $(document).ready(function(){
             }else if (navigator.canShare && navigator.canShare({title: "AsiaWorld-Expo 亞洲國際博覽館"})) { 
             navigator.share({
                 title: share_title,
-                text: share_title
+                text: home_url+hash_url
             }).then(() => {
                 console.log('Thanks for sharing!');
             })
