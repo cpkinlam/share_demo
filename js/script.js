@@ -3,8 +3,8 @@ var img_dir = "https://cpkinlam.github.io/share_demo/images/"
 $(document).ready(function(){
     var video = document.querySelector("#cam");
 
-    $("#cam").attr("width", $(".camera-wrap").width() + "px");
-    $("#cam").attr("height", $(".camera-wrap").height() + "px");
+    // $("#cam").attr("width", $(".camera-wrap").width() + "px");
+    // $("#cam").attr("height", $(".camera-wrap").height() + "px");
 
     if(window.location.hash) {
         hash_id = location.href.split('#')[1];
@@ -26,26 +26,21 @@ $(document).ready(function(){
     var facingMode = "user";
     var mediaConfig =  {
         audio: false,
-        video: {
-            width: {
-                min: $(".camera-wrap").width(),
-                ideal: $(".camera-wrap").width(),
-                max: $(".camera-wrap").width(),
-                exact: $(".camera-wrap").width()
-            },
-            height: { 
-                min: $(".camera-wrap").height(),
-                ideal: $(".camera-wrap").height(),
-                max: $(".camera-wrap").height(),
-                exact: $(".camera-wrap").height()
-            },
-            // mandatory: {
-            //     minWidth: $(".camera-wrap").width(),
-            //     maxWidth: $(".camera-wrap").width(),
-            //     minHeight: $(".camera-wrap").height(),
-            //     maxHeight: $(".camera-wrap").height()
-            // }
-        }
+        video: true
+        // video: {
+        //     width: {
+        //         min: $(".camera-wrap").width(),
+        //         ideal: $(".camera-wrap").width(),
+        //         max: $(".camera-wrap").width(),
+        //         exact: $(".camera-wrap").width()
+        //     },
+        //     height: { 
+        //         min: $(".camera-wrap").height(),
+        //         ideal: $(".camera-wrap").height(),
+        //         max: $(".camera-wrap").height(),
+        //         exact: $(".camera-wrap").height()
+        //     }
+        // }
     };
     if($("#cam").length){
         setCamera(mediaConfig);
