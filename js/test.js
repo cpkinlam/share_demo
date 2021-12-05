@@ -8,7 +8,7 @@
 
  //Global variables
  let video = $('#cam')[0],     //where we will put & test our video output
-     deviceList = $('#devices')[0],          //device list dropdown
+     deviceList = $('#devices'),          //device list dropdown
      devices = [],                        //getSources object to hold various camera options
      selectedCamera = [],            //used to hold a camera's ID and other parameters
      tests,                          //holder for our test results
@@ -17,7 +17,6 @@
      scanning = false;               //variable to show if we are in the middle of a scan
  
  function gotDevices(deviceInfos) {
-     $('#selectArea').show();
      let camcount = 1;   //used for labeling if the device label is not enumerated
      for (let i = 0; i !== deviceInfos.length; ++i) {
          let deviceInfo = deviceInfos[i];
@@ -26,7 +25,7 @@
          if (deviceInfo.kind === 'videoinput') {
              option.text = deviceInfo.label || 'camera ' + camcount;
              devices.push(option);
-             deviceList.add(option);
+             deviceList.push(option);
              camcount++;
          }
      }
@@ -103,7 +102,7 @@
      }
  
      scanning = true;
-     $('button').prop("disabled", true);
+
      $('table').show();
      $('#jump').show();
  
@@ -188,8 +187,6 @@
  
          //change the video dimensions
          console.log("Display size for " + candidate.label + ": " + candidate.width + "x" + candidate.height);
-         video.width = candidate.width;
-         video.height = candidate.height;
  
          window.stream = mediaStream; // make globally available
          video.srcObject = mediaStream;

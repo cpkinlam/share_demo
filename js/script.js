@@ -24,25 +24,8 @@ $(document).ready(function(){
 
 
 
-    $("#switch-camera-btn").click(function(){
-        if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-            console.log("enumerateDevices is not supported.");
-            alert("enumerateDevices is not supported.")
-        }else{
-            navigator.mediaDevices.enumerateDevices().then((devices) => {
-                var isChanged = false;
-                if(facingMode == "environment"){
-                    facingMode = "user";
-                }else{
-                    facingMode = "environment";
-                }
-                mediaConfig.video =  { facingMode: facingMode} ;
-                setCamera(mediaConfig)
-                
-            }).catch(function (e) {
-                console.log(e.name + ": " + e.message);
-            });
-        }
+    $(".switch-camera-btn").click(function(){
+        $("#quickButton").click();
     })
 
 

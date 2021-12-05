@@ -94,10 +94,22 @@
                     <a href="javascript:vovid(0)" class="switch-camera-btn">
                         <spna class="icon-icon-share"></spna>
                     </a>
-                    <select id="devices" name="Video devices" multiple title="devices"></select>
+                    <select id="devices" name="Video devices" multiple title="devices" style="width:40px"></select>
                     <!-- <a href="javascript:vovid(0)" class="test">test</a> -->
                 </div>
             </div>
+            <div class="col-sm-6 scanarea well well-sm" id="fullArea">
+                <button class="btn btn-primary btn-block" id="fullButton">Full Scan</button>
+                <p>vertical resolution range: <br>
+                <span>  max:
+                    <input type="text" id="hiRes" value="1080" size="4" maxlength="4" min="1" max="2160" pattern="[0-9]{1,4}" title="hiRes" />
+                     to min:
+                    <input type="text" id="loRes" value="1" size="4" maxlength="4" min="1" max="2160" pattern="[0-9]{1,4}" title="lowRes"/>
+                </span></p>
+            </div>
+            <table class="table-condensed table-bordered table-striped"	id="results" hidden >
+                <tr><th>Browser</th><th>Device</th><th>Res Name</th><th>Ratio</th><th>Ask</th><th>Actual</th><th>Status</th><th class="hidden">deviceIndex</th><th class="hidden">resIndex</th></tr>
+            </table>
         </div>
         <div style="width:100%; height:0px; overflow: auto; position: fixed;top: 0;left: 0; z-index: 9999;" class="test-print-wrap" >
             <img id="test" style="width:20px; height:20px">
