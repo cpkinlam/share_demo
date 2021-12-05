@@ -1,5 +1,4 @@
 var home_url = "https://www.awe-winter.link/";
-
 var img_dir = "https://cpkinlam.github.io/share_demo/images/"
 $(document).ready(function(){
     var video = document.querySelector("#cam");
@@ -40,12 +39,12 @@ $(document).ready(function(){
                 max: $(".camera-wrap").height(),
                 exact: $(".camera-wrap").height()
             },
-            mandatory: {
-                minWidth: $(".camera-wrap").width(),
-                maxWidth: $(".camera-wrap").width(),
-                minHeight: $(".camera-wrap").height(),
-                maxHeight: $(".camera-wrap").height()
-            }
+            // mandatory: {
+            //     minWidth: $(".camera-wrap").width(),
+            //     maxWidth: $(".camera-wrap").width(),
+            //     minHeight: $(".camera-wrap").height(),
+            //     maxHeight: $(".camera-wrap").height()
+            // }
         }
     };
     if($("#cam").length){
@@ -182,7 +181,7 @@ $(document).ready(function(){
                                 $(".loading-wrap").addClass("active")
                             },
                             success: function(data) {
-                                console.log(home_url+data['Key']);
+                                console.log(data['Key']);
                                 // window.location = "./share.html#"+home_url+data['Key']
                             }
                         })
