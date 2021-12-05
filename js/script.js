@@ -27,11 +27,14 @@ $(document).ready(function(){
             width: {
                 min: $(".camera-wrap").width(),
                 ideal: $(".camera-wrap").width(),
-                max: $(".camera-wrap").width() },
+                max: $(".camera-wrap").width(),
+                exact: $(".camera-wrap").width()
+            },
             height: { 
                 min: $(".camera-wrap").height(),
                 ideal: $(".camera-wrap").height(),
                 max: $(".camera-wrap").height() },
+                exact: $(".camera-wrap").height()
         }
     };
     if($("#cam").length){
@@ -116,10 +119,16 @@ $(document).ready(function(){
         var context = canvas.getContext('2d');
 
         
+        var video_proportion	= video.videoWidth / video.videoHeight;
         
         
+        s_height	= win_h_scale/2 - win_w_scale/video_proportion/2;
+        if(s_height<0){ s_height	= 0;}
         
-        context.drawImage(video, 0, 0, win_w_scale, win_h_scale);
+        
+        context.drawImage(video, 0, 0, win_w_scale, win_w_scale/video_proportion);
+
+        
         
         // video.pause();
 
