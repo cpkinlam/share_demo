@@ -27,21 +27,20 @@ $(document).ready(function(){
     var mediaConfig =  {
         facingMode: facingMode,
         audio: false,
-        video: true
-        // video: {
-        //     width: {
-        //         min: $(".camera-wrap").width(),
-        //         ideal: $(".camera-wrap").width(),
-        //         max: $(".camera-wrap").width(),
-        //         exact: $(".camera-wrap").width()
-        //     },
-        //     height: { 
-        //         min: $(".camera-wrap").height(),
-        //         ideal: $(".camera-wrap").height(),
-        //         max: $(".camera-wrap").height(),
-        //         exact: $(".camera-wrap").height()
-        //     }
-        // }
+        video: {
+            width: {
+                min: $(".camera-wrap").width(),
+                ideal: $(".camera-wrap").width(),
+                max: $(".camera-wrap").width(),
+                exact: $(".camera-wrap").width()
+            },
+            height: { 
+                min: $(".camera-wrap").height(),
+                ideal: $(".camera-wrap").height(),
+                max: $(".camera-wrap").height(),
+                exact: $(".camera-wrap").height()
+            }
+        }
     };
     if($("#cam").length){
         setCamera(mediaConfig);
@@ -178,7 +177,7 @@ $(document).ready(function(){
                             },
                             success: function(data) {
                                 console.log(data['Key']);
-                                // window.location = "./share.html#"+home_url+data['Key']
+                                window.location = "./share.html#"+data['Key']
                             }
                         })
                     })

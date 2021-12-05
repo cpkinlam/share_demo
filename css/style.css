@@ -805,6 +805,11 @@ a.white-btn{
     display: block;
 }
 
+.share-page .footer-wrap .footer-bg{
+    position: static;
+    padding-bottom: 15%;
+}
+
 
 .popup-wrap{
     position: fixed;
