@@ -26,21 +26,20 @@ $(document).ready(function(){
     var facingMode = "user";
     var mediaConfig =  {
         audio: false,
-        video: true
-        // video: {
-        //     width: {
-        //         min: $(".camera-wrap").width(),
-        //         ideal: $(".camera-wrap").width(),
-        //         max: $(".camera-wrap").width(),
-        //         exact: $(".camera-wrap").width()
-        //     },
-        //     height: { 
-        //         min: $(".camera-wrap").height(),
-        //         ideal: $(".camera-wrap").height(),
-        //         max: $(".camera-wrap").height(),
-        //         exact: $(".camera-wrap").height()
-        //     }
-        // }
+        video: {
+            width: {
+                min: $(".camera-wrap").width(),
+                ideal: $(".camera-wrap").width(),
+                max: $(".camera-wrap").width(),
+                exact: $(".camera-wrap").width()
+            },
+            height: { 
+                min: $(".camera-wrap").height(),
+                ideal: $(".camera-wrap").height(),
+                max: $(".camera-wrap").height(),
+                exact: $(".camera-wrap").height()
+            }
+        }
     };
     if($("#cam").length){
         setCamera(mediaConfig);
