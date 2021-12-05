@@ -604,6 +604,8 @@ a.white-btn{
     padding-bottom: 40%;
     display: block;
     width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 .footer-wrap .footer-content{
@@ -769,6 +771,10 @@ a.white-btn{
 
 #cam{
     display: block;
+    height: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 

@@ -1,5 +1,6 @@
 var home_url = "https://www.awe-winter.link/";
-var img_dir = "http://localhost:8888/awe/images/"
+
+var img_dir = "https://cpkinlam.github.io/share_demo/images/"
 $(document).ready(function(){
     var video = document.querySelector("#cam");
 
@@ -23,8 +24,8 @@ $(document).ready(function(){
     var facingMode = "environment";
     var mediaConfig =  {
         video: {
-            width: $(window).width(),
-            height: $(window).height()- 40
+            width: $(".camera-wrap").width(),
+            height: $(".camera-wrap").height()
         }
     };
     if($("#cam").length){
@@ -65,7 +66,6 @@ $(document).ready(function(){
         console.log("errBack")
     }
 
-    alert(navigator.mediaDevices);
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
         console.log("enumerateDevices is not supported.");
         alert("enumerateDevices is not supported.")
@@ -100,8 +100,8 @@ $(document).ready(function(){
 
 
     $(".take-photo-btn").click(function(){
-        var win_w_scale	= $( window ).width() * 1;
-		var win_h_scale	= ($( window ).height() - 40) * 1;
+        var win_w_scale	= $(".camera-wrap").width();
+		var win_h_scale	= $(".camera-wrap").height();
         var img = new Image;
         var canvas = document.getElementById('webcam-canvas');
         $("#webcam-canvas").attr("width", win_w_scale).attr("height", win_h_scale);
@@ -109,14 +109,11 @@ $(document).ready(function(){
         var video = document.getElementById('cam');
         var context = canvas.getContext('2d');
 
-        var video_proportion	= video.videoWidth / video.videoHeight;
         
         
-        s_height	= win_h_scale/2 - win_w_scale/video_proportion/2;
-        if(s_height<0){ s_height	= 0;}
         
         
-        context.drawImage(video, 0, s_height, win_w_scale, win_w_scale/video_proportion);
+        context.drawImage(video, 0, 0, win_w_scale, win_h_scale);
         
         // video.pause();
 
