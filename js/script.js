@@ -8,8 +8,9 @@ $(document).ready(function(){
 
     if(window.location.hash) {
         hash_id = location.href.split('#')[1];
-
+        $(".print-item1 img").attr("src", img_dir+"animation"+hash_id+"_bottom.gif")
         $(".animation-item1").prepend('<img src="'+img_dir+'animation'+hash_id+'_bottom.gif'+'" />')
+        $(".full-page-animation").addClass('animation'+hash_id);
     }
 
     /****************** index ***********/
@@ -59,6 +60,7 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             dataType:"json",
+            crossDomain: true,
             contentType: "application/json",
             data: JSON.stringify(formData),
             url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/awe-winter-s3",
@@ -70,7 +72,6 @@ $(document).ready(function(){
                 
                 // $(".print-img").attr("src", data['Location'])
                 $(".print-wrap").css("background-image", "url("+data['Location']+")");
-                $(".print-item1 img").attr("src", img_dir+"animation"+hash_id+"_bottom.gif")
                 // $(".print-item2 img").attr("src", home_url+data['Key'])
 
  
@@ -82,6 +83,7 @@ $(document).ready(function(){
                         $.ajax({
                             type: "POST",
                             dataType:"json",
+                            crossDomain: true,
                             contentType: "application/json",
                             data: JSON.stringify(formData),
                             url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/awe-winter-s3",
