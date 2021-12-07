@@ -8,7 +8,7 @@
 
  //Global variables
  let video = $('#cam')[0],     //where we will put & test our video output
-     deviceList = $('#devices'),          //device list dropdown
+     deviceList = $('#devices')[0],          //device list dropdown
      devices = [],                        //getSources object to hold various camera options
      selectedCamera = [],            //used to hold a camera's ID and other parameters
      tests,                          //holder for our test results
@@ -25,7 +25,7 @@
          if (deviceInfo.kind === 'videoinput') {
              option.text = deviceInfo.label || 'camera ' + camcount;
              devices.push(option);
-             deviceList.push(option);
+             deviceList.add(option);
              camcount++;
          }
      }
@@ -466,7 +466,7 @@
  }
 
 const btn = document.querySelector('.switch-camera-btn');
-var isOpenFlashLight = false
+var isOpenFlashLight = false;
 btn.addEventListener('click', function(){
     track.applyConstraints({
         advanced: [{torch: !isOpenFlashLight}]
