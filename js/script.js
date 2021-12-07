@@ -1,6 +1,6 @@
 var home_url = "https://www.awe-winter.link/";
-// var img_dir = "https://cpkinlam.github.io/share_demo/images/"
-var img_dir = "http://localhost:8888/awe/images/";
+var img_dir = "https://cpkinlam.github.io/share_demo/images/"
+// var img_dir = "http://localhost:8888/awe/images/";
 $(document).ready(function(){
     var video = document.querySelector("#cam");
 
