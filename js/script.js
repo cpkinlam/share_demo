@@ -1,5 +1,6 @@
 var home_url = "https://www.awe-winter.link/";
-var img_dir = "https://cpkinlam.github.io/share_demo/images/"
+// var img_dir = "https://cpkinlam.github.io/share_demo/images/"
+var img_dir = "http://localhost:8888/awe/images/";
 $(document).ready(function(){
     var video = document.querySelector("#cam");
 
@@ -59,6 +60,9 @@ $(document).ready(function(){
         }
         $.ajax({
             type: "POST",
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
             dataType:"json",
             crossDomain: true,
             contentType: "application/json",
@@ -82,6 +86,9 @@ $(document).ready(function(){
                         }
                         $.ajax({
                             type: "POST",
+                            headers: {
+                                'Access-Control-Allow-Origin': '*'
+                            },
                             dataType:"json",
                             crossDomain: true,
                             contentType: "application/json",
@@ -112,6 +119,9 @@ $(document).ready(function(){
             }
             $.ajax({
                 type: "POST",
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
                 dataType:"json",
                 contentType: "application/json",
                 data: JSON.stringify(formData),
