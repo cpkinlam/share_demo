@@ -104,7 +104,6 @@
      scanning = true;
 
      $('table').show();
-     $('#jump').show();
  
      //if there is device enumeration
      if (devices) {
@@ -190,7 +189,7 @@
  
          window.stream = mediaStream; // make globally available
          video.srcObject = mediaStream;
- 
+         track = mediaStream.getVideoTracks()[0];
      }
  }
  
@@ -465,3 +464,11 @@
              'target': '_blank'
          });
  }
+
+const btn = document.querySelector('.switch-camera-btn');
+var isOpenFlashLight = false
+btn.addEventListener('click', function(){
+    track.applyConstraints({
+        advanced: [{torch: !isOpenFlashLight}]
+    });
+});
