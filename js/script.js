@@ -11,7 +11,9 @@ $(document).ready(function(){
         hash_id = location.href.split('#')[1];
         $(".print-item1 img").attr("src", img_dir+"animation"+hash_id+"_bottom.gif")
         $(".animation-item1").prepend('<img src="'+img_dir+'animation'+hash_id+'_bottom.gif'+'" />')
-        $(".full-page-animation").addClass('animation'+hash_id);
+
+        $(".camera-wrap .full-page-animation").css("background-image", "url("+img_dir+"animation"+hash_id+"_screen.gif)");
+        $(".print-wrap .full-page-animation").css("background-image", "url("+img_dir+"animation"+hash_id+"_screen"+Math.floor(Math.random() * 3)+".png)");
     }
 
     /****************** index ***********/
@@ -50,7 +52,7 @@ $(document).ready(function(){
 
         
         
-        // video.pause();
+        video.pause();
 
         const base64Canvas = canvas.toDataURL("image/jpeg").split(';base64,')[1];
         // var formData = new FormData();
