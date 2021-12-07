@@ -25,7 +25,7 @@
          if (deviceInfo.kind === 'videoinput') {
              option.text = deviceInfo.label || 'camera ' + camcount;
              devices.push(option);
-             deviceList.add(option);
+             deviceList.push(option);
              camcount++;
          }
      }
@@ -270,14 +270,8 @@
      }
      else { //finish up
          video.removeEventListener("onloadedmetadata", displayVideoDimensions); //turn off the event handler
-         $('button').off("click"); //turn the generic button handler  off
  
          scanning = false;
- 
-         $(".pfin").show();
-         $('#csvOut').click(function() {
-             exportTableToCSV.apply(this, [$('#results'), 'gumResTestExport.csv']);
-         });
  
          //allow to click on a row to test (only works with device Enumeration
          if (devices) {
