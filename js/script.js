@@ -28,10 +28,6 @@ $(document).ready(function(){
 
 
 
-    $(".switch-camera-btn").click(function(){
-        $("#quickButton").click();
-    })
-
 
     $(".take-photo-btn").click(function(){
         var win_w_scale	= $(".camera-wrap").width();

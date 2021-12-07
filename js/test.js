@@ -15,7 +15,8 @@
      r = 0,                          //used for iterating through the array
      camNum = 0,                     //used for iterating through number of camera
      scanning = false;               //variable to show if we are in the middle of a scan
- 
+ let cameraType = "front";
+
  function gotDevices(deviceInfos) {
      let camcount = 1;   //used for labeling if the device label is not enumerated
      for (let i = 0; i !== deviceInfos.length; ++i) {
@@ -25,7 +26,8 @@
          if (deviceInfo.kind === 'videoinput') {
              option.text = deviceInfo.label || 'camera ' + camcount;
              devices.push(option);
-             deviceList.push(option);
+             deviceList.add(option);
+             
              camcount++;
          }
      }
@@ -83,15 +85,15 @@
  });
  
  //Start scan by controlling the quick and full scan buttons
- $('button').click(function(){
+ function button_click(innerHTML){
  
      //setup for a quick scan using the hand-built quickScan object
-     if (this.innerHTML === "Quick Scan") {
+     if (innerHTML === "Quick Scan") {
          console.log("Quick scan");
          tests = quickScan;
      }
      //setup for a full scan and build scan object based on inputs
-     else if (this.innerHTML === "Full Scan") {
+     else if (innerHTML === "Full Scan") {
          let highRes = $('#hiRes').val();
          let lowRes = $('#loRes').val();
          console.log("Full scan from " + lowRes + " to " + highRes);
@@ -146,7 +148,7 @@
          gum(tests[r]);
      }
  
- });
+ }
  
  //calls getUserMedia for a given camera and constraints
  function gum(candidate, device) {
@@ -198,12 +200,19 @@
      //This should only happen during setup
      if (tests === undefined)
          return;
- 
      //Wait for dimensions if they don't show right away
      if (!video.videoWidth) {
          setTimeout(displayVideoDimensions, 500);  //was 500
      }
- 
+
+     if(tests[r]=== undefined){
+        return
+     }
+
+     if(!tests[r].width){
+         return
+     }
+
      if (video.videoWidth * video.videoHeight > 0) {
          if (tests[r].width + "x" + tests[r].height !== video.videoWidth + "x" + video.videoHeight) {
              captureResults("fail: mismatch");
@@ -459,10 +468,38 @@
          });
  }
 
-const btn = document.querySelector('.switch-camera-btn');
-var isOpenFlashLight = false;
-btn.addEventListener('click', function(){
-    track.applyConstraints({
-        advanced: [{torch: !isOpenFlashLight}]
-    });
-});
+// const btn = document.querySelector('.switch-camera-btn');
+// var isOpenFlashLight = false;
+// btn.addEventListener('click', function(){
+//     track.applyConstraints({
+//         advanced: [{torch: !isOpenFlashLight}]
+//     });
+// });
+
+$(document).ready(function(){
+    $(".switch-camera-btn").click(function(){
+        if(cameraType == "front"){
+            //cameraType = back
+            console.log(cameraType);
+            cameraType = "back";
+            $("#devices option:selected").prop("selected", false)
+            $("#devices option").each(function(){
+                if($(this).text().indexOf(cameraType) > -1){
+                    $(this).prop("selected", true)
+                }
+                console.log($(this).text())
+            })
+        }else{
+            console.log(cameraType);
+            cameraType = "front";
+            $("#devices option:selected").prop("selected", false)
+            $("#devices option").each(function(){
+                if($(this).text().indexOf(cameraType) > -1){
+                    $(this).prop("selected", true)
+                }
+                console.log($(this).text())
+            })
+        }
+        button_click("Quick Scan");
+    })
+})
