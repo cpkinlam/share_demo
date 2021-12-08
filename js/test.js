@@ -475,12 +475,12 @@ switch_btn.addEventListener('click', function(){
         console.log(cameraType);
         cameraType = "front";
         $("#devices option:selected").prop("selected", false)
-        $("#devices option").each(function(){
-            if($(this).text().indexOf(cameraType) > -1){
-                $(this).prop("selected", true)
-            }
-            console.log($(this).text())
-        })
+        // $("#devices option").each(function(){
+        //     if($(this).text().indexOf(cameraType) > -1){
+        //         $(this).prop("selected", true)
+        //     }
+        //     console.log($(this).text())
+        // })
     }
     button_click("Quick Scan");
 })
