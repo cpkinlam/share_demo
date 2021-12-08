@@ -28,7 +28,14 @@ $(document).ready(function(){
 
 
     $(".flashlight-btn").click(function(){
-        alert("You need a browser that supports flash light");
+        if($("body").hasClass("zh")){
+            alert("此瀏覽器並不支援閃光燈功能");
+        }else{
+            alert("Your browser is not supporting flashlight");
+        }
+        
+
+        
     })
 
     $(".take-photo-btn").click(function(){
