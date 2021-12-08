@@ -459,7 +459,7 @@
 
 $(document).ready(function(){
     $(".switch-camera-btn").click(function(){
-        r = 0;
+        // r = 0;
         if(cameraType == "front"){
             //cameraType = back
             console.log(cameraType);
