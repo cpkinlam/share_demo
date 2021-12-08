@@ -801,6 +801,11 @@ a.white-btn{
     -webkit-transform: translateX(-50%) scale(1, 1); /*for Chrome & Opera (& Safari) */
 }
 
+#cam.full-width{
+    width:100%;
+    height: auto;
+}
+
 #cam.front{
     transform: translateX(-50%) scale(-1, 1);;
     -webkit-transform: translateX(-50%) scale(-1, 1); /*for Chrome & Opera (& Safari) */

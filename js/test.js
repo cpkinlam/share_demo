@@ -48,7 +48,7 @@
          $("div").hide();
          return;
      }
- 
+     
      //Call gUM early to force user gesture and allow device enumeration
      camera_init();
  
@@ -60,6 +60,7 @@
             track.stop();
         });
     }
+    $("#cam").removeClass("back").addClass("front");
      //Call gUM early to force user gesture and allow device enumeration
      setTimeout(() => {
         navigator.mediaDevices.getUserMedia({audio: false, video: true})
@@ -145,6 +146,10 @@
          //Make sure there is at least 1 camera selected before starting
          if (selectedCamera[0]) {
              gum(tests[r], selectedCamera[0]);
+             $("#cam").removeClass("full-width");
+             if($(window).width() > $("#cam").width()){
+                $("#cam").addClass("full-width");
+             }
              if(cameraType == "front"){
                 $("#cam").removeClass("back").addClass("front");
              }else{
@@ -480,7 +485,7 @@ switch_btn.addEventListener('click', function(){
         var isSelected = false;
         $("#devices option").each(function(){
             if(!isSelected){
-                if($(this).text().indexOf(cameraType) > -1 || $(this).text().indexOf("後") > -1){
+                if($(this).text().indexOf(cameraType) > -1 || $(this).text().indexOf("後") > -1 || $(this).text().indexOf('Back') > -1){
                     $(this).prop("selected", true);
                     isSelected = true;
                 }
