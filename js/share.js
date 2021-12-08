@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 
     shareButton.addEventListener('click', async () => {
-        console.log("aaa");
+
         const blob = await fetch(s3_url+hash_url).then(r=>r.blob())
         
         let filesArray = new File([blob], 'file.jpg', {
@@ -28,7 +28,7 @@ $(document).ready(function(){
             if(navigator.canShare && navigator.canShare({files: [filesArray]})){
             navigator.share({
                 files: [filesArray],
-                title: share_title,
+                title: share_title + "\r\n"+home_url+hash_url,
             }).then(() => {
                 console.log('Thanks for sharing!');
             })
@@ -37,7 +37,7 @@ $(document).ready(function(){
             });
             }else if (navigator.canShare && navigator.canShare({title: "AsiaWorld-Expo 亞洲國際博覽館"})) { 
             navigator.share({
-                title: share_title,
+                title: share_title + "\r\n"+home_url+hash_url,
                 text: share_title + "\r\n"+home_url+hash_url
             }).then(() => {
                 console.log('Thanks for sharing!');
@@ -63,6 +63,15 @@ $(document).ready(function(){
         var winTop = (screen.height / 2) - (winHeight / 2);
         var winLeft = (screen.width / 2) - (winWidth / 2);
         window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURI(home_url+hash_url)+'&quote='+encodeURI(share_title), 'sharer', 'top=' + winTop + ',left=' + winLeft + 'toolbar=0,status=0,width='+winWidth+',height='+winHeight);
+    })
+
+    $(".copylink-btn").click(function(){
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(share_title + "\r\n"+home_url+hash_url).select();
+        document.execCommand("copy");
+        $temp.remove();
+        $(".popup-wrap").removeClass('active');
     })
 
 });
