@@ -461,12 +461,11 @@ const switch_btn = document.querySelector('.switch-camera-btn');
 switch_btn.addEventListener('click', function(){
     r = 0;
     if(cameraType == "front"){
-        //cameraType = back
         console.log(cameraType);
         cameraType = "back";
         $("#devices option:selected").prop("selected", false)
         $("#devices option").each(function(){
-            if($(this).text().indexOf(cameraType) > -1){
+            if($(this).text().indexOf(cameraType) > -1 || $(this).text().indexOf("後") > -1){
                 $(this).prop("selected", true)
             }
             console.log($(this).text())
