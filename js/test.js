@@ -67,7 +67,7 @@
 
                 window.stream = mediaStream; // make globally available
                 video.srcObject = mediaStream;
-                track = mediaStream.getVideoTracks()[0];
+               
                 //Now enumerate devices
                 navigator.mediaDevices.enumerateDevices()
                     .then(gotDevices)
