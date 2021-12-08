@@ -61,22 +61,23 @@
         });
     }
      //Call gUM early to force user gesture and allow device enumeration
-     navigator.mediaDevices.getUserMedia({audio: false, video: true})
-         .then((mediaStream) => {
- 
-             window.stream = mediaStream; // make globally available
-             video.srcObject = mediaStream;
- 
-             //Now enumerate devices
-             navigator.mediaDevices.enumerateDevices()
-                 .then(gotDevices)
-                 .catch(errorCallback);
- 
-         })
-         .catch((error) => {
-             console.error('getUserMedia error!', error);
-         });
- 
+     setTimeout(() => {
+        navigator.mediaDevices.getUserMedia({audio: false, video: true})
+            .then((mediaStream) => {
+
+                window.stream = mediaStream; // make globally available
+                video.srcObject = mediaStream;
+
+                //Now enumerate devices
+                navigator.mediaDevices.enumerateDevices()
+                    .then(gotDevices)
+                    .catch(errorCallback);
+
+            })
+            .catch((error) => {
+                console.error('getUserMedia error!', error);
+            });
+    }, (window.stream ? 200 : 0));  //official examples had this at 200
      //Localhost unsecure http connections are allowed
      if (document.location.hostname !== "localhost") {
          //check if the user is using http vs. https & redirect to https if needed
