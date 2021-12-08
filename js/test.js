@@ -474,7 +474,7 @@ switch_btn.addEventListener('click', function(){
         console.log(cameraType);
         cameraType = "back";
         $("#devices option:selected").prop("selected", false)
-        var isSelect = false
+        var isSelected = false;
         $("#devices option").each(function(){
             if($(this).text().indexOf(cameraType) > -1 || $(this).text().indexOf("後") > -1){
                 $(this).prop("selected", true);
