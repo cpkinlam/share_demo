@@ -43,16 +43,16 @@ $(document).ready(function(){
 		var win_h_scale	= $(".camera-wrap").height();
         var img = new Image;
         var canvas = document.getElementById('webcam-canvas');
-        $("#webcam-canvas").attr("width", $("#cam").width()).attr("height", $("#cam").height());
+        $("#webcam-canvas").attr("width", $("#cam").width()*2).attr("height", $("#cam").height()*2);
         var video = document.getElementById('cam');
         var context = canvas.getContext('2d');
 
         
         if($('#cam').hasClass("front")){
             context.scale(-1, 1); // Set scale to flip the image
-            context.drawImage(video, $("#cam").width()*-1, 0, $("#cam").width(), $("#cam").height());
+            context.drawImage(video, $("#cam").width()*2*-1, 0, $("#cam").width()*2, $("#cam").height()*2);
         }else{
-            context.drawImage(video, 0, 0, $("#cam").width(), $("#cam").height());
+            context.drawImage(video, 0, 0, $("#cam").width()*2, $("#cam").height()*2);
         }
         
 
