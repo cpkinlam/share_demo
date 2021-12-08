@@ -474,7 +474,8 @@ switch_btn.addEventListener('click', function(){
                 $(this).prop("selected", true)
             }
             console.log($(this).text())
-        })
+        });
+        button_click("Quick Scan");
     }else{
         console.log(cameraType);
         cameraType = "front";
@@ -485,6 +486,7 @@ switch_btn.addEventListener('click', function(){
         //     }
         //     console.log($(this).text())
         // })
+        camera_init();
     }
-    button_click("Quick Scan");
+    
 })
