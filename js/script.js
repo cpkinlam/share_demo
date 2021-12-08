@@ -39,12 +39,17 @@ $(document).ready(function(){
         var context = canvas.getContext('2d');
 
         
-
-        context.scale(-1, 1); // Set scale to flip the image
+        if($('#cam').hasClass("front")){
+            context.scale(-1, 1); // Set scale to flip the image
+            context.drawImage(video, $("#cam").width()*-1, 0, $("#cam").width(), $("#cam").height());
+        }else{
+            context.drawImage(video, 0, 0, $("#cam").width(), $("#cam").height());
+        }
+        
 
         
         
-        context.drawImage(video, $("#cam").width()*-1, 0, $("#cam").width(), $("#cam").height());
+        
 
         
         

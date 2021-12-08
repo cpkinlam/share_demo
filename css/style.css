@@ -797,6 +797,11 @@ a.white-btn{
     height: 100%;
     position: relative;
     left: 50%;
+    transform: translateX(-50%) scale(1, 1);;
+    -webkit-transform: translateX(-50%) scale(1, 1); /*for Chrome & Opera (& Safari) */
+}
+
+#cam.front{
     transform: translateX(-50%) scale(-1, 1);;
     -webkit-transform: translateX(-50%) scale(-1, 1); /*for Chrome & Opera (& Safari) */
 }

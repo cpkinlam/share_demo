@@ -132,6 +132,12 @@
          //Make sure there is at least 1 camera selected before starting
          if (selectedCamera[0]) {
              gum(tests[r], selectedCamera[0]);
+             if(cameraType == "front"){
+                $("#cam").removeClass("back").addClass("front");
+             }else{
+                $("#cam").removeClass("front").addClass("back");
+             }
+             
          }
          else {
              console.log("No camera selected. Defaulting to " + deviceList[0].text);
