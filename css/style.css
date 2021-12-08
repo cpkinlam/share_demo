@@ -814,6 +814,14 @@ a.white-btn{
     font-weight: bold;
 }
 
+#results{
+    display: none !important;
+}
+
+#quickArea{
+    display: none !important;
+}
+
 
 
 /************* share page ************/

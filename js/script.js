@@ -27,7 +27,9 @@ $(document).ready(function(){
     console.log(navigator.mediaDevices.enumerateDevices());
 
 
-
+    $(".flashlight-btn").click(function(){
+        alert("You need a browser that supports flash light");
+    })
 
     $(".take-photo-btn").click(function(){
         var win_w_scale	= $(".camera-wrap").width();

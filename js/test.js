@@ -67,7 +67,7 @@
 
                 window.stream = mediaStream; // make globally available
                 video.srcObject = mediaStream;
-
+                track = mediaStream.getVideoTracks()[0];
                 //Now enumerate devices
                 navigator.mediaDevices.enumerateDevices()
                     .then(gotDevices)
@@ -77,22 +77,24 @@
             .catch((error) => {
                 console.error('getUserMedia error!', error);
             });
+
+        if (document.location.hostname !== "localhost") {
+            //check if the user is using http vs. https & redirect to https if needed
+            if (document.location.protocol !== "https:") {
+                $(document).html("This doesn't work well on http. Redirecting to https");
+                console.log("redirecting to https");
+                document.location.href = "https:" + document.location.href.substring(document.location.protocol.length);
+            }
+        }
+        //Show text of what res's are used on QuickScan
+        let quickText = "Sizes:";
+        for (let q = 0; q < quickScan.length; q++) {
+            quickText += " " + quickScan[q].label
+        }
+        $('#quickLabel').text(quickText);
     }, (window.stream ? 200 : 0));  //official examples had this at 200
-     //Localhost unsecure http connections are allowed
-     if (document.location.hostname !== "localhost") {
-         //check if the user is using http vs. https & redirect to https if needed
-         if (document.location.protocol !== "https:") {
-             $(document).html("This doesn't work well on http. Redirecting to https");
-             console.log("redirecting to https");
-             document.location.href = "https:" + document.location.href.substring(document.location.protocol.length);
-         }
-     }
-     //Show text of what res's are used on QuickScan
-     let quickText = "Sizes:";
-     for (let q = 0; q < quickScan.length; q++) {
-         quickText += " " + quickScan[q].label
-     }
-     $('#quickLabel').text(quickText);
+
+     
  }
  
  //Start scan by controlling the quick and full scan buttons
