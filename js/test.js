@@ -50,6 +50,12 @@
      }
  
      //Call gUM early to force user gesture and allow device enumeration
+     camera_init();
+ 
+ });
+
+ function camera_init(){
+     //Call gUM early to force user gesture and allow device enumeration
      navigator.mediaDevices.getUserMedia({audio: false, video: true})
          .then((mediaStream) => {
  
@@ -81,8 +87,7 @@
          quickText += " " + quickScan[q].label
      }
      $('#quickLabel').text(quickText);
- 
- });
+ }
  
  //Start scan by controlling the quick and full scan buttons
  function button_click(innerHTML){
