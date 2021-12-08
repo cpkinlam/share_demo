@@ -358,32 +358,7 @@
          "width": 640,
          "height": 360,
          "ratio": "16:9"
-     },
-     {
-         "label": "CIF",
-         "width": 352,
-         "height": 288,
-         "ratio": "4:3"
-     },
-     {
-         "label": "QVGA",
-         "width": 320,
-         "height": 240,
-         "ratio": "4:3"
-     },
-     {
-         "label": "QCIF",
-         "width": 176,
-         "height": 144,
-         "ratio": "4:3"
-     },
-     {
-         "label": "QQVGA",
-         "width": 160,
-         "height": 120,
-         "ratio": "4:3"
      }
- 
  ];
  
  //creates an object with all HD & SD video ratios between two heights
@@ -484,6 +459,7 @@
 
 $(document).ready(function(){
     $(".switch-camera-btn").click(function(){
+        r = 0;
         if(cameraType == "front"){
             //cameraType = back
             console.log(cameraType);
