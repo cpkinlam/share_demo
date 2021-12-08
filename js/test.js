@@ -55,6 +55,11 @@
  });
 
  function camera_init(){
+    if (window.stream) {
+        stream.getTracks().forEach((track) => {
+            track.stop();
+        });
+    }
      //Call gUM early to force user gesture and allow device enumeration
      navigator.mediaDevices.getUserMedia({audio: false, video: true})
          .then((mediaStream) => {
@@ -469,9 +474,11 @@ switch_btn.addEventListener('click', function(){
         console.log(cameraType);
         cameraType = "back";
         $("#devices option:selected").prop("selected", false)
+        var isSelect = false
         $("#devices option").each(function(){
             if($(this).text().indexOf(cameraType) > -1 || $(this).text().indexOf("後") > -1){
-                $(this).prop("selected", true)
+                $(this).prop("selected", true);
+                isSelected = true;
             }
             console.log($(this).text())
         });
