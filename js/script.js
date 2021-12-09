@@ -4,8 +4,8 @@ var img_dir = "https://cpkinlam.github.io/share_demo/images/"
 $(document).ready(function(){
     var video = document.querySelector("#cam");
 
-    $(".print-wrap").css("width", $(".camera-wrap").width() + "px");
-    $(".print-wrap").css("height", $(".camera-wrap").height() + "px");
+    $(".print-wrap").css("width", $(".camera-wrap").width() * 2 + "px");
+    $(".print-wrap").css("height", $(".camera-wrap").height() * 2 + "px");
 
     if(window.location.hash) {
         hash_id = location.href.split('#')[1];

@@ -49,9 +49,9 @@
          return;
      }
      
-     //Call gUM early to force user gesture and allow device enumeration
-     camera_init();
- 
+    //Call gUM early to force user gesture and allow device enumeration
+    camera_init();
+    switch_btn.click();
  });
 
  function camera_init(){
@@ -61,8 +61,8 @@
         });
     }
     $("#cam").removeClass("back").addClass("front");
-     //Call gUM early to force user gesture and allow device enumeration
-     setTimeout(() => {
+    //Call gUM early to force user gesture and allow device enumeration
+    setTimeout(() => {
         navigator.mediaDevices.getUserMedia({audio: false, video: true})
             .then((mediaStream) => {
 
@@ -93,7 +93,7 @@
             quickText += " " + quickScan[q].label
         }
         $('#quickLabel').text(quickText);
-    }, (window.stream ? 200 : 0));  //official examples had this at 200
+    }, (window.stream ? 300 : 100));  //official examples had this at 200
 
      
  }
@@ -205,7 +205,7 @@
                      captureResults("fail: " + error.name);
                  }
              });
-     }, (window.stream ? 200 : 0));  //official examples had this at 200
+     }, (window.stream ? 300 : 100));  //official examples had this at 200
  
  
      function gotStream(mediaStream) {
@@ -352,30 +352,6 @@
          "width": 1600,
          "height": 1200,
          "ratio": "4:3"
-     },
-     {
-         "label": "720p(HD)",
-         "width": 1280,
-         "height": 720,
-         "ratio": "16:9"
-     },
-     {
-         "label": "SVGA",
-         "width": 800,
-         "height": 600,
-         "ratio": "4:3"
-     },
-     {
-         "label": "VGA",
-         "width": 640,
-         "height": 480,
-         "ratio": "4:3"
-     },
-     {
-         "label": "360p(nHD)",
-         "width": 640,
-         "height": 360,
-         "ratio": "16:9"
      }
  ];
  
