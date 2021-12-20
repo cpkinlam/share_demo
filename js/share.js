@@ -1,6 +1,6 @@
 var home_url = "https://www.awe-winter.link/";
-var s3_url = "https://s3.ap-east-1.amazonaws.com/www.awe-winter.link/";
-var img_dir = "https://cpkinlam.github.io/share_demo/images/";
+var s3_url = "https://www.awe-winter.link/";
+var img_dir = "https://www.awe-winter.link/images/";
 var share_title = "AsiaWorld-Expo 亞洲國際博覽館";
 var share_home = "https://7e5kwzc33l.execute-api.ap-east-1.amazonaws.com/default/share-image?url=";
 

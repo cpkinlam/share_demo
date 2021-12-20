@@ -87,12 +87,13 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             headers: {
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                
             },
             crossDomain: true,
             contentType: 'application/json',
             data: JSON.stringify(formData),
-            url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/prod/awe-winter-s3",
+            url: "https://rma-uat.sinoliving.com/testUpload",
             beforeSend: function() {
                 $(".loading-wrap").addClass("active")
             },
@@ -106,6 +107,7 @@ $(document).ready(function(){
                     data = JSON.parse(data)
                 }
                 console.log(data);
+                
                 // $(".print-img").attr("src", data['Location'])
                 $(".print-wrap").css("background-image", "url("+data['Location']+")");
                 // $(".print-item2 img").attr("src", home_url+data['Key'])
@@ -128,7 +130,7 @@ $(document).ready(function(){
                             crossDomain: true,
                             contentType: "application/json",
                             data: JSON.stringify(formData),
-                            url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/prod/awe-winter-s3",
+                            url: "https://rma-uat.sinoliving.com/testUpload",
                             beforeSend: function() {
                                 $(".loading-wrap").addClass("active")
                             },
@@ -148,7 +150,7 @@ $(document).ready(function(){
                             crossDomain: true,
                             contentType: "application/json",
                             data: JSON.stringify(formData),
-                            url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/awe-winter-s3",
+                            url: "https://rma-uat.sinoliving.com/testUpload",
                             beforeSend: function() {
                                 $(".loading-wrap").addClass("active")
                             },
@@ -170,26 +172,66 @@ $(document).ready(function(){
         });
     })
     $(".test").click(function(){
-        html2canvas($(".camera-wrap")[0],{allowTaint: true,useCORS: true, scrollY: -window.scrollY}).then(function(canvas) {
-            const base64Canvas2 = canvas.toDataURL("image/jpeg").split(';base64,')[1];
-            formData = {
-                "user_avatar":base64Canvas2
-            }
-            $.ajax({
-                type: "POST",
-                headers: {
-                    'Access-Control-Allow-Origin': '*'
-                },
-                contentType: "application/json",
-                data: JSON.stringify(formData),
-                url: "https://q6wa28s276.execute-api.ap-east-1.amazonaws.com/awe-winter-s3",
-                beforeSend: function() {
-                    $(".loading-wrap").addClass("active")
-                },
-                success: function(data) {
-                    console.log(home_url+data['Key']);
+        var win_w_scale	= $(".camera-wrap").width();
+		var win_h_scale	= $(".camera-wrap").height();
+        var img = new Image;
+        var canvas = document.getElementById('webcam-canvas');
+        $("#webcam-canvas").attr("width", $("#cam").width()*2).attr("height", $("#cam").height()*2);
+        var video = document.getElementById('cam');
+        var context = canvas.getContext('2d');
+
+        
+        if($('#cam').hasClass("front")){
+            context.scale(-1, 1); // Set scale to flip the image
+            context.drawImage(video, $("#cam").width()*2*-1, 0, $("#cam").width()*2, $("#cam").height()*2);
+        }else{
+            context.drawImage(video, 0, 0, $("#cam").width()*2, $("#cam").height()*2);
+        }
+        
+        video.pause();
+
+        const base64Canvas = canvas.toDataURL("image/jpeg").split(';base64,')[1];
+        var today = new Date();
+        var random = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
+        var ss = String(today.getSeconds()).padStart(2, '0');
+        var mm = String(today.getMinutes()).padStart(2, '0');
+        var HH = String(today.getHours()).padStart(2, '0');
+        var dd = String(today.getDate()).padStart(2, '0');
+        var MM = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        
+        today = yyyy+MM+dd+HH+mm+ss+random;
+        filePath = "avatars/awe_winter"+today+".jpg";
+        thumbnailPath = "thumbnail/avatars/awe_winter"+today+".jpg";
+        // var formData = new FormData();
+        // formData.append('user_avatar', base64Canvas);
+        formData = {
+            "user_avatar":base64Canvas,
+            "filePath": filePath
+        }
+        $.ajax({
+            type: "POST",
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                
+            },
+            crossDomain: true,
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            url: "https://rma-uat.sinoliving.com/testUpload",
+            beforeSend: function() {
+                $(".loading-wrap").addClass("active")
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr);
+                console.log(error);
+                console.log(status)
+            },
+            success: function(data) {
+                if(typeof data == "string"){
+                    data = JSON.parse(data)
                 }
-            })
+            }
         })
     })
 });

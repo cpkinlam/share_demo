@@ -15,7 +15,7 @@
      r = 0,                          //used for iterating through the array
      camNum = 0,                     //used for iterating through number of camera
      scanning = false;               //variable to show if we are in the middle of a scan
- let cameraType = "front";
+ let cameraType = "back";
 
  function gotDevices(deviceInfos) {
      let camcount = 1;   //used for labeling if the device label is not enumerated
@@ -45,13 +45,11 @@
  
      if (!navigator.getUserMedia) {
          alert('You need a browser that supports WebRTC');
-         $("div").hide();
          return;
      }
      
     //Call gUM early to force user gesture and allow device enumeration
     camera_init();
-    switch_btn.click();
  });
 
  function camera_init(){
@@ -60,11 +58,24 @@
             track.stop();
         });
     }
-    $("#cam").removeClass("back").addClass("front");
+    if($("#cam").hasClass("back")){
+        var facingMode = "environment";
+    }else{
+        var facingMode = "user";
+    }
+    
     //Call gUM early to force user gesture and allow device enumeration
     setTimeout(() => {
-        navigator.mediaDevices.getUserMedia({audio: false, video: true})
-            .then((mediaStream) => {
+        navigator.mediaDevices.getUserMedia(
+            {
+                audio: false,
+                video: {
+                    facingMode: facingMode,
+                    width: { ideal: 2048 },
+                    height: { ideal: 1536 },
+                    ratio: { ideal:"4:3"}
+                }
+            }).then((mediaStream) => {
 
                 window.stream = mediaStream; // make globally available
                 video.srcObject = mediaStream;
@@ -457,28 +468,30 @@ switch_btn.addEventListener('click', function(){
     if(cameraType == "front"){
         console.log(cameraType);
         cameraType = "back";
-        $("#devices option:selected").prop("selected", false)
-        var isSelected = false;
-        $("#devices option").each(function(){
-            if(!isSelected){
-                if($(this).text().indexOf(cameraType) > -1 || $(this).text().indexOf("後") > -1 || $(this).text().indexOf('Back') > -1){
-                    $(this).prop("selected", true);
-                    isSelected = true;
-                }
-            }
-            console.log($(this).text())
-        });
-        button_click("Quick Scan");
+        /****** selectbox *****/
+        // $("#devices option:selected").prop("selected", false)
+        // var isSelected = false;
+        // $("#devices option").each(function(){
+        //     if(!isSelected){
+        //         if($(this).text().indexOf(cameraType) > -1 || $(this).text().indexOf("後") > -1 || $(this).text().indexOf('Back') > -1){
+        //             $(this).prop("selected", true);
+        //             isSelected = true;
+        //         }
+        //     }
+        //     console.log($(this).text())
+        // });
+        // button_click("Quick Scan");
+        /****** endselectbox *****/
+        $("#cam").removeClass("front").addClass("back");
+        camera_init();
     }else{
         console.log(cameraType);
         cameraType = "front";
-        $("#devices option:selected").prop("selected", false)
-        // $("#devices option").each(function(){
-        //     if($(this).text().indexOf(cameraType) > -1){
-        //         $(this).prop("selected", true)
-        //     }
-        //     console.log($(this).text())
-        // })
+        /****** selectbox *****/
+        // $("#devices option:selected").prop("selected", false)
+        /****** endselectbox *****/
+        $("#cam").removeClass("back").addClass("front");
+
         camera_init();
     }
     

@@ -1,78 +1,137 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<title>AsiaWorld-Expo 亞洲國際博覽館</title>
+	<meta charset="UTF-8" />
 
-<!DOCTYPE html>
+  <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta property="og:image" content="https://www.awe-winter.link/images/share.jpg"/>
+  <link href="https://www.awe-winter.link/images/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
 
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-    <head>
-        <meta charset="utf-8" />
-        <title>WebRTC Camera Resolution Finder</title>
-        <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="shortcut icon" href="https://webrtchacks.com/wp-content/themes/parament/favicon.ico">
-        <style>
-            .row {
-                margin-left: 10px;
-                padding: 5px;
-            }
-            .scanarea {
-                max-width: 350px;
-                height: 100px;
-            }
-            video {
-                transform: scale(-1, 1); /*For Firefox (& IE) */
-                -webkit-transform: scale(-1, 1); /*for Chrome & Opera (& Safari) */
-            }
-            table th.hidden {
-                display: none;
-                border: none;
-                visibility: hidden;
-            }
-        </style>
 
-    </head>
 
-    <body>
-        <div id="container">
-            <div class="row">
-                <h2>WebRTC getUserMedia camera resolution finder</h2>
-                <div id="selectArea" hidden>
-                    <h4>Select camera(s) below:</h4>
-                    <select id="devices" name="Video devices" multiple title="devices"></select>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1040.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="../css/style.css?v=20211210_6" />
+  <link rel="stylesheet" href="../icomoon.css?v=20211210_6" />
+
+
+
+
+</head>
+
+
+
+<body class="camera-page">
+    <div class="loading-wrap">
+		<div class="loader"></div>
+	</div>
+    <div class="rotation-lock">
+        <div class="rotation-lock-header">
+            <img src="../images/logo.png">
+        </div>
+        <div class="rotation-lock-content">
+            <div>
+                <img src="../images/icon-rotate.png">
+                <div>
+                    For the best experience, <br>
+                    please rotate your phone in portrait mode.
                 </div>
             </div>
-            <div class="row" id="controlArea">
-                <h4>Click one of the buttons below to find camera resolutions:</h4>
-                <div class="col-sm-6 scanarea well well-sm" id="quickArea">
-                    <button class="btn btn-primary btn-block" id="quickButton">Quick Scan</button>
-                    <p id="quickLabel"></p>
+            
+        </div>
+        <div class="rotation-lock-footer"></div>
+    </div>
+    <div class="web-container">
+        <div class="web-content">
+            <div class="main">
+                <div class="camera-wrap">
+                    <!-- <video id='cam' autoplay muted playsinline></video>
+                    <div class="full-page-animation animation1">
+                        
+                    </div>
+                    <div class="animation-item1">
+                        
+                    </div>
+                    <div class="animation-item2">
+
+                    </div> -->
+                    
+ 
+
+                    <div class="col-sm-6 scanarea well well-sm" id="quickArea">
+                        <button class="btn btn-primary btn-block" id="quickButton">Quick Scan</button>
+                        <p id="quickLabel"></p>
+                    </div>
+                    
+                    <video id="cam" autoplay muted playsinline class="back"></video>
+                    <div class="full-page-animation">
+                        
+                    </div>
+                    <div class="animation-item1">
+                        
+                    </div>
+                    <div class="animation-item2">
+
+                    </div>
+
                 </div>
-                <div class="col-sm-6 scanarea well well-sm" id="fullArea">
-                    <button class="btn btn-primary btn-block" id="fullButton">Full Scan</button>
-                    <p>vertical resolution range: <br>
-                    <span>  max:
-                        <input type="text" id="hiRes" value="1080" size="4" maxlength="4" min="1" max="2160" pattern="[0-9]{1,4}" title="hiRes" />
-                         to min:
-                        <input type="text" id="loRes" value="1" size="4" maxlength="4" min="1" max="2160" pattern="[0-9]{1,4}" title="lowRes"/>
-                    </span></p>
+    
+                <div id="video"></div>
+            </div>
+            <div class="footer-wrap">
+                <div class="footer-bg"></div>
+                <div class="camera-btn-wrap">
+                    <!-- <a href="javascript:void(0)" class="flashlight-btn">
+                        <span class="icon-icon-light"></span>
+                    </a> -->
+                    <span style="width: 40px;"></span>
+                    <a href="javascript:void(0)" class="take-photo-btn"></a>
+                    <a href="javascript:void(0)" class="switch-camera-btn">
+                        <span class="icon-icon-flip-camera"></span>
+                    </a>
+                    <select id="devices" name="Video devices" multiple title="devices" style="width:40px"></select>
+                    <a href="javascript:void(0)" class="test">test</a>
                 </div>
             </div>
-            <div class="row" id="videoarea">
-                <video id="video" autoplay muted playsinline></video>
+            <div class="col-sm-6 scanarea well well-sm" id="fullArea" style="display: none;">
+                <button class="btn btn-primary btn-block" id="fullButton">Full Scan</button>
+                <p>vertical resolution range: <br>
+                <span>  max:
+                    <input type="text" id="hiRes" value="1080" size="4" maxlength="4" min="1" max="2160" pattern="[0-9]{1,4}" title="hiRes" />
+                     to min:
+                    <input type="text" id="loRes" value="1" size="4" maxlength="4" min="1" max="2160" pattern="[0-9]{1,4}" title="lowRes"/>
+                </span></p>
             </div>
-            <div class="row">
-                <p id="jump" hidden>Jump to <a href="#bottom">bottom</a> of table</p>
-                <table class="table-condensed table-bordered table-striped"	id="results" hidden >
-                    <tr><th>Browser</th><th>Device</th><th>Res Name</th><th>Ratio</th><th>Ask</th><th>Actual</th><th>Status</th><th class="hidden">deviceIndex</th><th class="hidden">resIndex</th></tr>
-                </table>
-                <h5 class="pfin" hidden><a href=".">Refresh</a> to run test again with same or different parameters (you'll lose the table above). </h5>
-                <h5 class="pfin" hidden>Export results to a CSV file here: <a id="csvOut" href="#" class="btn btn-link btn-md">gumResTestExport.csv</a></h5>
-            </div>
-            <div id="bottom"></div>
-            <div class="row">
-                <h4>Visit <a href="http://webrtchacks.com">webrtcHacks.com</a> for more details.</h4>
+            <table class="table-condensed table-bordered table-striped"	id="results" hidden style="display: none;">
+                <tr><th>Browser</th><th>Device</th><th>Res Name</th><th>Ratio</th><th>Ask</th><th>Actual</th><th>Status</th><th class="hidden">deviceIndex</th><th class="hidden">resIndex</th></tr>
+            </table>
+        </div>
+        <div style="width:100%; height:0px; overflow: auto; position: fixed;top: 0;left: 0; z-index: 9999;" class="test-print-wrap" >
+            <img id="test" style="width:20px; height:20px">
+            <canvas id="webcam-canvas"></canvas>
+            <div class="print-wrap">
+                <!-- <img src="" class="print-img" > -->
+                <div class="full-page-animation"></div>
+                <div class="print-item1"><img src="" crossorigin="anonymous"></div>
+                <!-- <div class="print-item2"><img></div> -->
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="https://webrtchacks.github.io/adapter/adapter-latest.js"></script>
-        <script src="../js/test.js"></script>
-    </body>
+    </div>
+
+
+    <script src="../js/html2canvas.js"></script>
+    <script src="../js/script_test.js?v=20211210_6"></script>
+    <script src="https://webrtchacks.github.io/adapter/adapter-latest.js"></script>
+    <script src="../js/test.js?v=20211210_6"></script>
+</body>
 </html>
